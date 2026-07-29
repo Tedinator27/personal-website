@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <script>
+    (function () {
+      var stored = localStorage.getItem('theme')
+      var theme = stored === 'light' || stored === 'dark' ? stored : 'dark'
+      document.documentElement.classList.toggle('dark', theme === 'dark')
+    })()
+  </script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Theodore Zhang | AI Evaluation Engineer</title>
+  <meta
+    name="description"
+    content="Theodore Zhang — AI Evaluation Engineer specializing in generative AI, LLM evaluation, DevOps, and software quality assurance."
+  />
+  <meta name="theme-color" content="#0a0e17" />
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Theodore Zhang | AI Evaluation Engineer" />
+  <meta property="og:title" content="Theodore Zhang | AI Evaluation Engineer" />
+  <meta
+    property="og:description"
+    content="AI Evaluation Engineer specializing in LLM reliability, evaluation pipelines, and quality assurance for AI systems."
+  />
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Theodore Zhang | AI Evaluation Engineer" />
+  <meta
+    name="twitter:description"
+    content="AI Evaluation Engineer specializing in LLM reliability, evaluation pipelines, and quality assurance for AI systems."
+  />
+
+  <!-- Fonts: Space Grotesk (display), Inter (body), JetBrains Mono (technical labels) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap"
+    rel="stylesheet"
+  />
+</head>
+<body>
+  <div id="root"></div>
+  <script type="module" src="/src/main.tsx"></script>
+</body>
+</html>

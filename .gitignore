@@ -1,0 +1,12 @@
+node_modules/
+dist/
+.DS_Store
+*.tsbuildinfo
+vite.config.d.ts
+vite.config.js
+screenshots/
+copy-screenshots.bat
+copy-new-screenshots.bat
+serve-preview.js
+PORTFOLIO_CONTEXT.md
+.claude/
