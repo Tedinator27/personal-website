@@ -1,0 +1,86 @@
+import { Dumbbell, Gamepad2, Film, Music, Zap } from 'lucide-react'
+import RevealOnScroll from './ui/RevealOnScroll'
+import SectionHeading from './ui/SectionHeading'
+
+const hobbies = [
+  {
+    icon: Dumbbell,
+    title: 'Gym',
+    description:
+      "Consistent training is a big part of how Theodore stays sharp. Whether it's lifting, cardio, or trying a new program, the gym is a regular part of the routine.",
+    color: 'from-blue-500/20 to-cyan-500/20',
+    iconColor: 'text-cyan-600 dark:text-accent-cyan',
+  },
+  {
+    icon: Zap,
+    title: 'Pickleball',
+    description:
+      "Pickleball has become a go-to sport, combining quick reflexes, strategy, and the fun of rallying with friends. Always down for a competitive match.",
+    color: 'from-emerald-500/20 to-teal-500/20',
+    iconColor: 'text-emerald-600 dark:text-emerald-400',
+  },
+  {
+    icon: Gamepad2,
+    title: 'Board Games',
+    description:
+      "From strategy-heavy euros to chaotic party games, board games are a favorite way to unwind. There's something great about gathering around a table for a few hours.",
+    color: 'from-purple-500/20 to-violet-500/20',
+    iconColor: 'text-purple-600 dark:text-accent-purple',
+  },
+  {
+    icon: Film,
+    title: 'Film',
+    description:
+      "A wide and enthusiastic film diet — spanning arthouse, blockbusters, classic cinema, and everything in between. Always looking for the next great watch.",
+    color: 'from-rose-500/20 to-pink-500/20',
+    iconColor: 'text-rose-600 dark:text-rose-400',
+  },
+  {
+    icon: Music,
+    title: 'Music',
+    description:
+      "Music is a constant backdrop — genres, eras, moods, it's all fair game. Discovering new artists and revisiting old favorites is an ongoing and rewarding pastime.",
+    color: 'from-amber-500/20 to-orange-500/20',
+    iconColor: 'text-amber-600 dark:text-amber-400',
+  },
+]
+
+export default function Hobbies() {
+  return (
+    <section
+      id="hobbies"
+      className="border-t border-slate-900/5 bg-white py-24 dark:border-white/5 dark:bg-navy-900"
+    >
+      <div className="mx-auto max-w-6xl px-6">
+        <SectionHeading
+          eyebrow="Hobbies"
+          title="Outside the terminal"
+          description="A few things that keep life interesting when the laptop is closed."
+        />
+
+        <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-5">
+          {hobbies.map((hobby, i) => {
+            const Icon = hobby.icon
+            return (
+              <RevealOnScroll key={hobby.title} delay={i * 80}>
+                <div className="group flex h-full flex-col rounded-2xl border border-slate-900/10 bg-slate-50 p-6 shadow-sm transition-all duration-300 hover:border-cyan-600/40 hover:shadow-md dark:border-white/10 dark:bg-navy-800/50 dark:hover:border-accent-cyan/40 dark:hover:shadow-glow">
+                  <div
+                    className={`mb-4 flex h-11 w-11 items-center justify-center rounded-xl bg-gradient-to-br ${hobby.color}`}
+                  >
+                    <Icon className={`h-5 w-5 ${hobby.iconColor}`} aria-hidden="true" />
+                  </div>
+                  <h3 className="font-display text-base font-semibold text-slate-900 dark:text-white">
+                    {hobby.title}
+                  </h3>
+                  <p className="mt-2 text-sm leading-relaxed text-slate-500 dark:text-slate-400">
+                    {hobby.description}
+                  </p>
+                </div>
+              </RevealOnScroll>
+            )
+          })}
+        </div>
+      </div>
+    </section>
+  )
+}

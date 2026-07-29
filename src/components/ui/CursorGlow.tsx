@@ -28,7 +28,7 @@ export default function CursorGlow() {
     <div
       ref={glowRef}
       aria-hidden="true"
-      className="pointer-events-none fixed left-0 top-0 z-0 h-[400px] w-[400px] rounded-full bg-blue-500/10 blur-[100px] transition-transform duration-300 ease-out will-change-transform"
+      className="pointer-events-none fixed left-0 top-0 z-0 h-[400px] w-[400px] rounded-full bg-blue-500/10 blur-[100px] will-change-transform"
     />
   )
 }

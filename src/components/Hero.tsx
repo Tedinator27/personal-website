@@ -15,7 +15,7 @@ export default function Hero() {
       className="relative overflow-hidden border-b border-slate-900/5 bg-hero-glow bg-white pb-24 pt-28 dark:border-white/5 dark:bg-navy-900"
     >
       <div className="absolute inset-0 bg-grid-pattern bg-[size:44px_44px] opacity-40" aria-hidden="true" />
-      <NeuralBackground className="absolute inset-0 h-full w-full opacity-70" density={70} />
+      <NeuralBackground className="absolute inset-0 h-full w-full opacity-70" density={35} />
 
       <div className="relative mx-auto grid max-w-6xl grid-cols-1 items-center gap-16 px-6 lg:grid-cols-[1.1fr_0.9fr]">
         <div>

@@ -48,7 +48,7 @@ export default function NeuralBackground({ className = '', density = 55 }: Props
       ctx!.setTransform(1, 0, 0, 1, 0, 0)
       ctx!.scale(dpr, dpr)
 
-      const count = Math.max(18, Math.min(density, Math.floor((width * height) / 18000)))
+      const count = Math.max(12, Math.min(density, Math.floor((width * height) / 28000)))
       nodes = Array.from({ length: count }, () => ({
         x: Math.random() * width,
         y: Math.random() * height,
@@ -56,6 +56,8 @@ export default function NeuralBackground({ className = '', density = 55 }: Props
         vy: (Math.random() - 0.5) * 0.25,
       }))
     }
+
+    let frameCount = 0
 
     function drawFrame() {
       ctx!.clearRect(0, 0, width, height)
@@ -67,34 +69,39 @@ export default function NeuralBackground({ className = '', density = 55 }: Props
         if (node.y < 0 || node.y > height) node.vy *= -1
       }
 
+      // Batch all edges into a single path — avoids hundreds of individual stroke() calls per frame
+      ctx!.strokeStyle = 'rgba(96,165,250,0.11)'
+      ctx!.lineWidth = 0.8
+      ctx!.beginPath()
       for (let i = 0; i < nodes.length; i++) {
         for (let j = i + 1; j < nodes.length; j++) {
           const a = nodes[i]
           const b = nodes[j]
           const dx = a.x - b.x
           const dy = a.y - b.y
-          const dist = Math.sqrt(dx * dx + dy * dy)
-          if (dist < 140) {
-            ctx!.strokeStyle = `rgba(96,165,250,${0.14 * (1 - dist / 140)})`
-            ctx!.lineWidth = 1
-            ctx!.beginPath()
+          // Use squared distance to avoid sqrt on every pair
+          if (dx * dx + dy * dy < 12100) { // 110^2
             ctx!.moveTo(a.x, a.y)
             ctx!.lineTo(b.x, b.y)
-            ctx!.stroke()
           }
         }
       }
+      ctx!.stroke()
 
+      // Batch all nodes into a single fill() call
+      ctx!.fillStyle = 'rgba(148,197,255,0.5)'
+      ctx!.beginPath()
       for (const node of nodes) {
-        ctx!.fillStyle = 'rgba(148,197,255,0.55)'
-        ctx!.beginPath()
-        ctx!.arc(node.x, node.y, 1.6, 0, Math.PI * 2)
-        ctx!.fill()
+        ctx!.moveTo(node.x + 1.5, node.y)
+        ctx!.arc(node.x, node.y, 1.5, 0, Math.PI * 2)
       }
+      ctx!.fill()
     }
 
     function loop() {
-      drawFrame()
+      // Run at ~30fps by skipping every other frame — imperceptible at this speed
+      frameCount++
+      if (frameCount % 2 === 0) drawFrame()
       animationFrame = requestAnimationFrame(loop)
     }
 
