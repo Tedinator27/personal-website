@@ -23,17 +23,7 @@ export default function Navbar() {
 
   return (
     <header className="sticky top-0 z-50 border-b border-slate-900/5 bg-white/80 backdrop-blur-lg dark:border-white/5 dark:bg-navy-900/80">
-      <nav className="mx-auto flex max-w-6xl items-center justify-between px-6 py-4" aria-label="Primary">
-        <a
-          href="#home"
-          className="flex items-center gap-2 font-display text-lg font-semibold text-slate-900 dark:text-white"
-        >
-          <span className="flex h-9 w-9 items-center justify-center rounded-lg bg-gradient-to-br from-accent-blue to-accent-purple font-mono text-sm text-white">
-            TZ
-          </span>
-          <span className="hidden sm:inline">{site.name}</span>
-        </a>
-
+      <nav className="mx-auto flex max-w-6xl items-center justify-center px-6 py-4" aria-label="Primary">
         <ul className="hidden items-center gap-8 md:flex">
           {links.map((link) => (
             <li key={link.id}>
@@ -52,7 +42,7 @@ export default function Navbar() {
           ))}
         </ul>
 
-        <div className="hidden items-center gap-3 md:flex">
+        <div className="hidden items-center gap-3 md:flex ml-8">
           <button
             type="button"
             onClick={toggleTheme}
@@ -66,7 +56,7 @@ export default function Navbar() {
           </Button>
         </div>
 
-        <div className="flex items-center gap-2 md:hidden">
+        <div className="flex items-center gap-2 md:hidden ml-auto">
           <button
             type="button"
             onClick={toggleTheme}
