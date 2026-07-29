@@ -1,4 +1,4 @@
-import { Dumbbell, Film, Music } from 'lucide-react'
+import { Dumbbell, Film, Music, Zap } from 'lucide-react'
 import type { LucideIcon } from 'lucide-react'
 import RevealOnScroll from './ui/RevealOnScroll'
 import SectionHeading from './ui/SectionHeading'
@@ -23,12 +23,13 @@ const hobbies: Hobby[] = [
     iconColor: 'text-cyan-600 dark:text-accent-cyan',
   },
   {
-    kind: 'img',
-    src: './pickleball.png',
+    kind: 'icon',
+    icon: Zap,
     title: 'Pickleball',
     description:
       "Pickleball has become a go-to sport, combining quick reflexes, strategy, and the fun of rallying with friends. Always down for a competitive match.",
     color: 'from-emerald-500/20 to-teal-500/20',
+    iconColor: 'text-emerald-600 dark:text-emerald-400',
   },
   {
     kind: 'img',
