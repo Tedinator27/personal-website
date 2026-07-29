@@ -1,9 +1,20 @@
-import { Dumbbell, Gamepad2, Film, Music, Zap } from 'lucide-react'
+import { Dumbbell, Film, Music } from 'lucide-react'
+import type { LucideIcon } from 'lucide-react'
 import RevealOnScroll from './ui/RevealOnScroll'
 import SectionHeading from './ui/SectionHeading'
 
-const hobbies = [
+type Hobby = {
+  title: string
+  description: string
+  color: string
+} & (
+  | { kind: 'icon'; icon: LucideIcon; iconColor: string }
+  | { kind: 'img'; src: string; imgClass?: string }
+)
+
+const hobbies: Hobby[] = [
   {
+    kind: 'icon',
     icon: Dumbbell,
     title: 'Gym',
     description:
@@ -12,22 +23,24 @@ const hobbies = [
     iconColor: 'text-cyan-600 dark:text-accent-cyan',
   },
   {
-    icon: Zap,
+    kind: 'img',
+    src: './pickleball.png',
     title: 'Pickleball',
     description:
       "Pickleball has become a go-to sport, combining quick reflexes, strategy, and the fun of rallying with friends. Always down for a competitive match.",
     color: 'from-emerald-500/20 to-teal-500/20',
-    iconColor: 'text-emerald-600 dark:text-emerald-400',
   },
   {
-    icon: Gamepad2,
+    kind: 'img',
+    src: './chess-pawn.svg',
+    imgClass: 'dark:invert',
     title: 'Board Games',
     description:
       "From strategy-heavy euros to chaotic party games, board games are a favorite way to unwind. There's something great about gathering around a table for a few hours.",
     color: 'from-purple-500/20 to-violet-500/20',
-    iconColor: 'text-purple-600 dark:text-accent-purple',
   },
   {
+    kind: 'icon',
     icon: Film,
     title: 'Film',
     description:
@@ -36,6 +49,7 @@ const hobbies = [
     iconColor: 'text-rose-600 dark:text-rose-400',
   },
   {
+    kind: 'icon',
     icon: Music,
     title: 'Music',
     description:
@@ -59,26 +73,32 @@ export default function Hobbies() {
         />
 
         <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-5">
-          {hobbies.map((hobby, i) => {
-            const Icon = hobby.icon
-            return (
-              <RevealOnScroll key={hobby.title} delay={i * 80}>
-                <div className="group flex h-full flex-col rounded-2xl border border-slate-900/10 bg-slate-50 p-6 shadow-sm transition-all duration-300 hover:border-cyan-600/40 hover:shadow-md dark:border-white/10 dark:bg-navy-800/50 dark:hover:border-accent-cyan/40 dark:hover:shadow-glow">
-                  <div
-                    className={`mb-4 flex h-11 w-11 items-center justify-center rounded-xl bg-gradient-to-br ${hobby.color}`}
-                  >
-                    <Icon className={`h-5 w-5 ${hobby.iconColor}`} aria-hidden="true" />
-                  </div>
-                  <h3 className="font-display text-base font-semibold text-slate-900 dark:text-white">
-                    {hobby.title}
-                  </h3>
-                  <p className="mt-2 text-sm leading-relaxed text-slate-500 dark:text-slate-400">
-                    {hobby.description}
-                  </p>
+          {hobbies.map((hobby, i) => (
+            <RevealOnScroll key={hobby.title} delay={i * 80}>
+              <div className="group flex h-full flex-col rounded-2xl border border-slate-900/10 bg-slate-50 p-6 shadow-sm transition-all duration-300 hover:border-cyan-600/40 hover:shadow-md dark:border-white/10 dark:bg-navy-800/50 dark:hover:border-accent-cyan/40 dark:hover:shadow-glow">
+                <div
+                  className={`mb-4 flex h-11 w-11 items-center justify-center rounded-xl bg-gradient-to-br ${hobby.color}`}
+                >
+                  {hobby.kind === 'icon' ? (
+                    <hobby.icon className={`h-5 w-5 ${hobby.iconColor}`} aria-hidden="true" />
+                  ) : (
+                    <img
+                      src={hobby.src}
+                      alt=""
+                      aria-hidden="true"
+                      className={`h-6 w-6 object-contain ${hobby.imgClass ?? ''}`}
+                    />
+                  )}
                 </div>
-              </RevealOnScroll>
-            )
-          })}
+                <h3 className="font-display text-base font-semibold text-slate-900 dark:text-white">
+                  {hobby.title}
+                </h3>
+                <p className="mt-2 text-sm leading-relaxed text-slate-500 dark:text-slate-400">
+                  {hobby.description}
+                </p>
+              </div>
+            </RevealOnScroll>
+          ))}
         </div>
       </div>
     </section>

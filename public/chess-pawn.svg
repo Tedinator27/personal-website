@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 45 45" fill="currentColor">
+  <!-- Head -->
+  <circle cx="22.5" cy="9.5" r="5.5"/>
+  <!-- Neck + body -->
+  <path d="M 17 15 Q 14 22 16 27 L 12 34 H 33 L 29 27 Q 31 22 28 15 Z"/>
+  <!-- Base -->
+  <rect x="9" y="34" width="27" height="4" rx="2"/>
+</svg>
