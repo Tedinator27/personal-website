@@ -1,4 +1,4 @@
-import { Dumbbell, Film, Music, Heart } from 'lucide-react'
+import { Dumbbell, Film, Music, ExternalLink } from 'lucide-react'
 import type { LucideIcon } from 'lucide-react'
 import RevealOnScroll from './ui/RevealOnScroll'
 import SectionHeading from './ui/SectionHeading'
@@ -30,6 +30,7 @@ type Hobby =
       title: string
       description: string
       color: string
+      link?: { href: string; label: string }
     }
   | {
       kind: 'img'
@@ -38,6 +39,7 @@ type Hobby =
       title: string
       description: string
       color: string
+      link?: { href: string; label: string }
     }
   | {
       kind: 'pets'
@@ -45,6 +47,7 @@ type Hobby =
       title: string
       description: string
       color: string
+      link?: { href: string; label: string }
     }
 
 const hobbies: Hobby[] = [
@@ -83,6 +86,7 @@ const hobbies: Hobby[] = [
       "A wide and enthusiastic film diet spanning arthouse, blockbusters, classic cinema, and everything in between. Always looking for the next great watch.",
     color: 'from-rose-500/20 to-pink-500/20',
     iconColor: 'text-rose-600 dark:text-rose-400',
+    link: { href: 'https://letterboxd.com/tzhang1738/', label: 'Letterboxd' },
   },
   {
     kind: 'icon',
@@ -92,13 +96,14 @@ const hobbies: Hobby[] = [
       "Music is a constant backdrop. Genres, eras, moods, it's all fair game. Discovering new artists and revisiting old favorites is an ongoing and rewarding pastime.",
     color: 'from-amber-500/20 to-orange-500/20',
     iconColor: 'text-amber-600 dark:text-amber-400',
+    link: { href: 'https://open.spotify.com/user/xwkccn028jodql85tcnhjwprd?si=132ee149193f4db5', label: 'Spotify' },
   },
   {
     kind: 'pets',
     photos: ['./cat1.jpg', './cat2.jpg', './cat3.jpg'],
-    title: 'Pets',
+    title: 'Cats',
     description:
-      "Two fluffy Persian cats who are fully convinced they own the house. Equal parts chaos and comfort, they're always nearby whether you want them to be or not.",
+      "Butters is a Persian cat who is fully convinced he owns the house. Equal parts chaos and comfort, he's always nearby whether you want him to be or not.",
     color: 'from-pink-500/20 to-rose-500/20',
   },
 ]
@@ -157,9 +162,21 @@ export default function Hobbies() {
                   <h3 className="font-display text-base font-semibold text-slate-900 dark:text-white">
                     {hobby.title}
                   </h3>
-                  <p className="mt-2 text-sm leading-relaxed text-slate-500 dark:text-slate-400">
+                  <p className="mt-2 flex-1 text-sm leading-relaxed text-slate-500 dark:text-slate-400">
                     {hobby.description}
                   </p>
+
+                  {hobby.link && (
+                    <a
+                      href={hobby.link.href}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="mt-4 inline-flex items-center gap-1.5 font-mono text-xs text-cyan-600 transition-colors hover:text-cyan-500 dark:text-accent-cyan dark:hover:text-white"
+                    >
+                      {hobby.link.label}
+                      <ExternalLink className="h-3 w-3" aria-hidden="true" />
+                    </a>
+                  )}
                 </div>
               </RevealOnScroll>
             )
