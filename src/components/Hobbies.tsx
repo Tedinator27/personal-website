@@ -86,7 +86,7 @@ export default function Hobbies() {
                       src={hobby.src}
                       alt=""
                       aria-hidden="true"
-                      className={`h-6 w-6 object-contain ${hobby.imgClass ?? ''}`}
+                      className={`h-5 w-5 object-contain ${hobby.imgClass ?? ''}`}
                     />
                   )}
                 </div>
